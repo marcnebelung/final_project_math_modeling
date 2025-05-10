@@ -8,13 +8,6 @@
       "height":null,
       "wall_colors":[ [0,0,0] ],
       "shape_lines":[
-        {
-          "xx": [17.0,23.0],
-          "yy": [3.1,3.1],
-          "linewidth": 2,
-          "outline_color": [255,0,0],
-          "fill_color": [255,0,0]
-        }
       ],
       "shape_circles":[
       ],
@@ -43,7 +36,7 @@
       "domain": "room",
       "groups": [
         {
-          "nb": 50,
+          "nb": 500,
           "radius_distribution": ["uniform",0.4,0.6],
           "velocity_distribution": ["normal",1.2,0.1],
           "box": [3.6,36.5,3.6,26.5],
@@ -56,7 +49,7 @@
     {
       "name": "sensor1",
       "domain": "room",
-      "line": [10.0,10,30.0,10]
+      "line": [17,3,23,3]
     }
   ],
   "prefix":"results/",
@@ -78,9 +71,9 @@
   "dmin_people":0.0,
   "dmin_walls":0.0,
   "plot_people":true,
-  "plot_contacts":true,
-  "plot_desired_velocities":true,
-  "plot_velocities":true,
-  "plot_paths":true,
+  "plot_contacts":false,
+  "plot_desired_velocities":false,
+  "plot_velocities":false,
+  "plot_paths":false,
   "plot_sensors":true
 }
