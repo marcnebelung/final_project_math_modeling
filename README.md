@@ -1,10 +1,2 @@
-# final_project_math_modeling
-Hello Hugo, Dani, and David!
-This project is gonna be crazy!
-
-
-Vamos a liarla mazo!!!
-
-
-
-cambio en main de hugo
+# Social Force Model Simulation - Pedestrian Dynamics
+This repo contains our code for our experimental, simulation-based, research on the social force model for pedestrian dynamics.

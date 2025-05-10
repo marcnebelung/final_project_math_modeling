@@ -14,23 +14,9 @@
           "linewidth": 2,
           "outline_color": [255,0,0],
           "fill_color": [255,0,0]
-        },
-        {
-          "xx": [17.0,23.0],
-          "yy": [27.02,27.02],
-          "linewidth": 2,
-          "outline_color": [0,255,0],
-          "fill_color": [0,255,0]
         }
       ],
       "shape_circles":[
-        {
-          "center_x": 20.0,
-          "center_y": 7.0,
-          "radius": 1.0,
-          "outline_color": [0,0,0],
-          "fill_color": [0,0,0]
-        }
       ],
       "shape_ellipses":[
       ],
@@ -48,16 +34,6 @@
           "next_destination": null,
           "next_domain": null,
           "next_transit_box":null
-        },
-        {
-          "name": "green_door",
-          "colors": [ [0,255,0] ],
-          "excluded_colors":[ [0,0,0] ],
-          "desired_velocity_from_color":[],
-          "velocity_scale": 1,
-          "next_destination": null,
-          "next_domain": null,
-          "next_transit_box":null
         }
       ]
     }
@@ -67,18 +43,11 @@
       "domain": "room",
       "groups": [
         {
-          "nb": 20,
+          "nb": 50,
           "radius_distribution": ["uniform",0.4,0.6],
           "velocity_distribution": ["normal",1.2,0.1],
           "box": [3.6,36.5,3.6,26.5],
           "destination": "red_door"
-        },
-        {
-          "nb": 20,
-          "radius_distribution": ["uniform",0.4,0.6],
-          "velocity_distribution": ["normal",1.2,0.1],
-          "box": [3.6,36.5,3.6,26.5],
-          "destination": "green_door"
         }
       ]
     }
@@ -87,12 +56,7 @@
     {
       "name": "sensor1",
       "domain": "room",
-      "line": [10.0,4.5,30.0,4.5]
-    },
-    {
-      "name": "sensor2",
-      "domain": "room",
-      "line": [10.0,25.5,30.0,25.5]
+      "line": [10.0,10,30.0,10]
     }
   ],
   "prefix":"results/",
@@ -114,9 +78,9 @@
   "dmin_people":0.0,
   "dmin_walls":0.0,
   "plot_people":true,
-  "plot_contacts":false,
+  "plot_contacts":true,
   "plot_desired_velocities":true,
   "plot_velocities":true,
   "plot_paths":true,
-  "plot_sensors":false
+  "plot_sensors":true
 }
