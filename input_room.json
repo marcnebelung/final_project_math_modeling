@@ -36,7 +36,7 @@
       "domain": "room",
       "groups": [
         {
-          "nb": 500,
+          "nb": 100,
           "radius_distribution": ["uniform",0.4,0.6],
           "velocity_distribution": ["normal",1.2,0.1],
           "box": [3.6,36.5,3.6,26.5],
@@ -54,7 +54,7 @@
   ],
   "prefix":"results/",
   "seed":40,
-  "with_graphes": true,
+  "with_graphes": false,
   "Tf":25.0,
   "dt":0.005,
   "drawper":100,
