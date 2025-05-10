@@ -55,7 +55,7 @@
   "prefix":"results/",
   "seed":40,
   "with_graphes": false,
-  "Tf":25.0,
+  "Tf":100.0,
   "dt":0.005,
   "drawper":100,
   "mass":80.0,
