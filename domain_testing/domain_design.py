@@ -13,7 +13,7 @@ wall_color = [0, 0, 0]
 door_color = [255, 0, 0]
 bottom_xs = (3,37)
 
-door_width = 1.5
+door_width = 5
 
 room_width = bottom_xs[1] - bottom_xs[0]
 center = bottom_xs[0] + room_width/2

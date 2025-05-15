@@ -9,7 +9,7 @@ from cromosim.domain import Destination
 from cromosim.micro import people_initialization, compute_contacts
 from cromosim.micro import compute_forces, move_people, people_update_destination
 
-def create_domain(door_width=1.5):
+def create_domain(door_width=5):
     """
     Create domain with specified door width, following the approach in domain_design.py
     """
@@ -53,14 +53,10 @@ def create_sensor(domain):
     """
     Create sensor across the entire bottom of the room to measure flow
     """
-    # Get domain dimensions
-    height, width = domain.image.shape[:2]
-    pixel_size = domain.pixel_size
-
     # Create sensor just inside the exit
     sensor = {
         "name": "exit_sensor",
-        "line": [3, 2.5, 37, 2.5],  # positioned just below the exit
+        "line": [3, 3, 37, 3],  # positioned just below the exit
         "id": [],
         "times": [],
         "xy": [],
@@ -74,7 +70,7 @@ def run_simulation(
     desired_speed=1.2,
     repulsion_strength=2000.0,
     relaxation_time=0.5,
-    door_width=1.5,
+    door_width=5,
     seed=40,
     Tf=500.0,
     dt=0.005,
@@ -128,7 +124,7 @@ def run_simulation(
         "y_min": 2.5,  # Just below the exit
         "y_max": 5.5   # Extend a few meters into the room
     }
-    exit_area_size = exit_area_width * 3  # Area size in m²
+    exit_area_size = exit_area_width * (exit_area["y_max"] - exit_area["y_min"])  # Area size in m²
 
     # Time tracking for computing metrics
     last_metric_time = 0
@@ -391,7 +387,7 @@ def plot_parameter_results(results):
     metric_labels = {
         'evacuation_time': 'Evacuation Time (s)',
         'flow_rate': 'Flow Rate (people/s)',
-        'collision_rate': 'Collision Rate',
+        'collision_rate': 'Number of Collisions',
         'exit_density': 'Exit Density (people/m²)'
     }
 
@@ -401,7 +397,7 @@ def plot_parameter_results(results):
         param_labels = {
             'num_people': 'Number of People',
             'desired_speed': 'Desired Speed (m/s)',
-            'repulsion_strength': 'Repulsion Strength',
+            'repulsion_strength': 'Repulsion Strength (N)',
             'relaxation_time': 'Relaxation Time (s)',
             'door_width': 'Door Width (m)'
         }
