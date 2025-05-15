@@ -14,6 +14,8 @@ from enhanced_sim.parameter_sweep_simulation import (
     create_domain,
     create_sensor
 )
+from create_animation import create_animation_from_frames
+
 # Import required functions from cromosim
 from cromosim.domain import Destination
 from cromosim.micro import (
@@ -34,7 +36,7 @@ def run_single_simulation(
     repulsion_strength=2000.0,
     relaxation_time=0.5,
     door_width=1.5,
-    seed=42,
+    seed=43,
     Tf=60.0,
     dt=0.005,
     drawper=20,
@@ -42,11 +44,11 @@ def run_single_simulation(
     # Visualization parameters
     with_graphes=True,
     plot_p=True,      # Plot people
-    plot_c=True,      # Plot contacts
-    plot_v=True,      # Plot velocities
-    plot_vd=True,     # Plot desired velocities
+    plot_c=False,      # Plot contacts
+    plot_v=False,      # Plot velocities
+    plot_vd=False,     # Plot desired velocities
     plot_s=True,      # Plot sensors
-    plot_pa=True,     # Plot paths
+    plot_pa=False,     # Plot paths
 
     # Other model parameters
     mass=80.0,
@@ -99,10 +101,6 @@ def run_single_simulation(
     print(f"     - Repulsion strength: {repulsion_strength} N")
     print(f"     - Relaxation time: {relaxation_time} s")
     print(f"     - Door width: {door_width} m")
-
-    # Create output directory if it doesn't exist
-    if not os.path.exists(prefix):
-        os.makedirs(prefix)
 
     # Create domain with specified door width
     dom = create_domain(door_width)
@@ -265,71 +263,33 @@ def run_single_simulation(
 
     return metrics
 
-def create_animation_from_frames(prefix, domain_name, fps=10):
-    """
-    Create an mp4 animation from the saved frames.
-
-    Args:
-        prefix: Directory containing the frames
-        domain_name: Name of the domain (used in filenames)
-        fps: Frames per second
-    """
-    try:
-        import subprocess
-        import glob
-
-        # Find all frame files
-        frame_pattern = f"{prefix}{domain_name}_fig_*.png"
-        frames = sorted(glob.glob(frame_pattern))
-
-        if not frames:
-            print("No frames found to create animation")
-            return False
-
-        print(f"Creating animation from {len(frames)} frames...")
-
-        # Create animation using ffmpeg
-        output_file = f"{prefix}{domain_name}_animation.mp4"
-
-        # Construct ffmpeg command
-        cmd = [
-            'ffmpeg', '-y',
-            '-framerate', str(fps),
-            '-pattern_type', 'glob',
-            '-i', frame_pattern,
-            '-c:v', 'libx264',
-            '-pix_fmt', 'yuv420p',
-            '-vf', 'pad=ceil(iw/2)*2:ceil(ih/2)*2',  # Ensure even dimensions
-            output_file
-        ]
-
-        # Run the command
-        subprocess.run(cmd, check=True)
-        print(f"Animation created: {output_file}")
-        return True
-
-    except ImportError:
-        print("Could not create animation: ffmpeg might not be installed or accessible")
-        return False
-    except subprocess.CalledProcessError as e:
-        print(f"Error creating animation: {e}")
-        return False
-
 if __name__ == "__main__":
     # You can modify these parameters to test different scenarios
+
     params = {
         "prefix": "results/",
         "num_people": 100,
-        "desired_speed": 1.5,
-        "repulsion_strength": 2000.0,
+        "desired_speed": 5,
+        "repulsion_strength": 1000.0,
         "relaxation_time": 0.5,
-        "door_width": 1.5,
-        "seed": 42,
+        "door_width": 5,
+        "seed": 44,
         "Tf": 60.0,
         "dt": 0.005,
-        "drawper": 20,  # Draw every 20 iterations
+        "drawper": 10,  # Draw every 20 iterations
         "with_graphes": True
     }
+
+    # Create output directory if it doesn't exist
+    prefix = params['prefix']
+    i = 0
+    original_prefix = prefix
+    while os.path.exists(prefix):
+        prefix = f"{original_prefix.rstrip('/')}_{i}/"
+        i += 1
+    os.makedirs(prefix)
+    params["prefix"] = prefix
+
 
     # Run the simulation
     metrics = run_single_simulation(**params)
@@ -341,7 +301,13 @@ if __name__ == "__main__":
 
     # Create animation from frames
     if params["with_graphes"]:
-        create_animation_from_frames(params["prefix"], "room")
+
+        real_time_fps = 1/params["dt"]/params["drawper"]
+        desired_vid_length = 10
+        fps_scaling = metrics["final_time"] / desired_vid_length
+        fps = real_time_fps * fps_scaling
+
+        create_animation_from_frames(params["prefix"], "room", fps=fps)
 
     plt.ioff()
     plt.show()
