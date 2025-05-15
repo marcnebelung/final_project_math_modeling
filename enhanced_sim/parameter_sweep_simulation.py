@@ -14,7 +14,7 @@ def create_domain(door_width=1.5):
     Create domain with specified door width, following the approach in domain_design.py
     """
     # Create domain
-    dom = Domain(name='room', background='room_3_walls.png', pixel_size=0.1)
+    dom = Domain(name='room', background='../domain_testing/room_3_walls.png', pixel_size=0.1)
 
     # Define colors
     wall_color = [0, 0, 0]
@@ -306,7 +306,7 @@ def run_parameter_sweep(parameter_ranges, repetitions=3):
 
     # Generate all parameter combinations
     param_names = list(parameter_ranges.keys())
-    param_values = list(parameter_ranges.values())
+    # param_values = list(parameter_ranges.values())
 
     # Simple parameter sweep (not full factorial)
     for param_name in param_names:
@@ -316,7 +316,7 @@ def run_parameter_sweep(parameter_ranges, repetitions=3):
             'desired_speed': 1.2,
             'repulsion_strength': 2000.0,
             'relaxation_time': 0.5,
-            'door_width': 1.5
+            'door_width': 3
         }
 
         # For each value of the current parameter
@@ -439,11 +439,11 @@ def plot_parameter_results(results):
 if __name__ == "__main__":
     # Define parameter ranges to test
     parameter_ranges = {
-        'num_people': [10, 25, 50, 75, 100, 150, 200],
-        'desired_speed': [1.0, 1.5, 2.0, 2.5, 3.0, 4, 5],
-        'repulsion_strength': [500, 1000, 2000, 3000, 4000, 5000],
-        'relaxation_time': [0.1, 0.5, 1.0, 1.5, 2.0, 3, 4],
-        'door_width': [0.7, 1.0, 1.5, 2.0, 2.5, 3.0, 4, 5, 6]
+        'num_people': list(range(5,25,5)) + list(range(25,75,3)),
+        # 'desired_speed': [1.0, 1.5, 2.0, 2.5, 3.0, 4, 5],
+        # 'repulsion_strength': [500, 1000, 2000, 3000, 4000, 5000],
+        # 'relaxation_time': [0.1, 0.5, 1.0, 1.5, 2.0, 3, 4],
+        # 'door_width': [0.7, 1.0, 1.5, 2.0, 2.5, 3.0, 4, 5, 6]
     }
     # parameter_ranges = {
     #     'num_people':[20],
@@ -455,7 +455,7 @@ if __name__ == "__main__":
     # Start timing the entire operation
     overall_start_time = time.time()
     # Run parameter sweeps
-    results = run_parameter_sweep(parameter_ranges, repetitions=10)
+    results = run_parameter_sweep(parameter_ranges, repetitions=5)
     # Print the end time
     overall_end_time = time.time()
     print(f"Total execution time: {overall_end_time - overall_start_time:.2f} seconds")
