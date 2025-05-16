@@ -3,9 +3,11 @@ from matplotlib.lines import Line2D
 
 from cromosim.domain import Domain
 from cromosim.domain import Destination
+from os import getcwd
+print("Present Working Directory:", getcwd())
 
 # To create a Domain object from a background image
-dom = Domain(name='room', background='room_3_walls.png', pixel_size=0.1)
+dom = Domain(name='room', background='domain_testing/room_3_walls.png', pixel_size=0.1)
 
 wall_color = [0, 0, 0]
 door_color = [255, 0, 0]
@@ -30,25 +32,28 @@ dom.add_shape(dest_line, outline_color=door_color, fill_color=door_color)
 # To build the domain :
 dom.build_domain()
 
-# To plot the domain : backgroud + added shapes
-dom.plot(id=1, title="Domain")
-
 # To create a Destination object towards the door
 dest = Destination(name='door', colors=[door_color],
                    excluded_colors=[wall_color])
 dom.add_destination(dest)
 
-# To plot the wall distance and its gradient
-dom.plot_wall_dist(id=2, step=20,
-                   title="Distance to walls and its gradient",
-                   savefig=False, filename="room_wall_distance.png")
 
-# To plot the distance to the red door and the correspondant
-# desired velocity
-dom.plot_desired_velocity('door', id=3, step=20,
-                          title="Distance to the destination and desired velocity",
-                          savefig=False, filename="room_desired_velocity.png")
 
-print("===> Domain: ", dom)
+if __name__ == "__main__":
 
-plt.show()
+    print("===> Domain: ", dom)
+
+    # To plot the domain : backgroud + added shapes
+    dom.plot(id=1, title="Domain")
+
+    # To plot the wall distance and its gradient
+    dom.plot_wall_dist(id=2, step=20,
+                    title="Distance to walls and its gradient",
+                    savefig=False, filename="room_wall_distance.png")
+
+    # To plot the distance to the red door and the correspondant
+    # desired velocity
+    dom.plot_desired_velocity('door', id=3, step=20,
+                            title="Distance to the destination and desired velocity",
+                            savefig=False, filename="room_desired_velocity.png")
+    plt.show()

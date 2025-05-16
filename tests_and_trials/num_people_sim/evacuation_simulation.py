@@ -8,7 +8,6 @@ from cromosim.domain import Destination
 from cromosim.micro import people_initialization, compute_contacts
 from cromosim.micro import compute_forces, move_people, people_update_destination
 
-
 def run_simulation(num_people, base_json_file='input_room.json', seed=None, verbose=False):
     """
     Run a single simulation with num_people individuals.

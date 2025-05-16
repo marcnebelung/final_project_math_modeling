@@ -478,7 +478,7 @@ while (t < Tf):
                         sensors=all_sensors[dom.name], savefig=True,
                         filename=prefix+dom.name+'_fig_'
                         + str(counter).zfill(6)+'.png')
-            plt.pause(0.05)
+            # plt.pause(0.05)
 
     # Update people destinations
     all_people = people_update_destination(all_people, domains, dom.pixel_size)

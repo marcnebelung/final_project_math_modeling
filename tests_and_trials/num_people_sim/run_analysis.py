@@ -3,7 +3,7 @@
 Run the evacuation time analysis with different population sizes.
 Simple version for basic scenario with one domain, one destination, and one sensor.
 """
-from evacuation_simulation import run_multiple_simulations, plot_evacuation_results
+from num_people_sim.evacuation_simulation import run_multiple_simulations, plot_evacuation_results
 import json
 import argparse
 
