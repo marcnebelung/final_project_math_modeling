@@ -312,7 +312,7 @@ def run_parameter_sweep(parameter_ranges, repetitions=3):
             'desired_speed': 1.2,
             'repulsion_strength': 2000.0,
             'relaxation_time': 0.5,
-            'door_width': 5
+            'door_width': 10
         }
 
         # For each value of the current parameter

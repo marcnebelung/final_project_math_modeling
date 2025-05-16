@@ -268,7 +268,7 @@ if __name__ == "__main__":
 
     params = {
         "prefix": "results/",
-        "num_people": 100,
+        "num_people": 15,
         "desired_speed": 1.2,
         "repulsion_strength": 2000.0,
         "relaxation_time": 0.5,
@@ -276,7 +276,7 @@ if __name__ == "__main__":
         "seed": 40,
         "Tf": 60.0,
         "dt": 0.005,
-        "drawper": 10,  # Draw every 20 iterations
+        "drawper": 10,  # Draw every 10 iterations
         "with_graphes": True
     }
 
