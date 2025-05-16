@@ -269,11 +269,11 @@ if __name__ == "__main__":
     params = {
         "prefix": "results/",
         "num_people": 100,
-        "desired_speed": 5,
-        "repulsion_strength": 1000.0,
+        "desired_speed": 1.2,
+        "repulsion_strength": 2000.0,
         "relaxation_time": 0.5,
         "door_width": 5,
-        "seed": 44,
+        "seed": 40,
         "Tf": 60.0,
         "dt": 0.005,
         "drawper": 10,  # Draw every 20 iterations

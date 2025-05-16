@@ -308,11 +308,11 @@ def run_parameter_sweep(parameter_ranges, repetitions=3):
     for param_name in param_names:
         param_results = {}
         base_params = {
-            'num_people': 50,
+            'num_people': 100,
             'desired_speed': 1.2,
             'repulsion_strength': 2000.0,
             'relaxation_time': 0.5,
-            'door_width': 3
+            'door_width': 5
         }
 
         # For each value of the current parameter
@@ -387,7 +387,7 @@ def plot_parameter_results(results):
     metric_labels = {
         'evacuation_time': 'Evacuation Time (s)',
         'flow_rate': 'Flow Rate (people/s)',
-        'collision_rate': 'Number of Collisions',
+        'collision_rate': 'Collision Rate (colls./s)',
         'exit_density': 'Exit Density (people/m²)'
     }
 
@@ -435,23 +435,16 @@ def plot_parameter_results(results):
 if __name__ == "__main__":
     # Define parameter ranges to test
     parameter_ranges = {
-        'num_people': list(range(5,25,5)) + list(range(25,75,3)),
-        # 'desired_speed': [1.0, 1.5, 2.0, 2.5, 3.0, 4, 5],
-        # 'repulsion_strength': [500, 1000, 2000, 3000, 4000, 5000],
-        # 'relaxation_time': [0.1, 0.5, 1.0, 1.5, 2.0, 3, 4],
-        # 'door_width': [0.7, 1.0, 1.5, 2.0, 2.5, 3.0, 4, 5, 6]
+        'num_people': range(20,160,20),
+        'desired_speed': range(1,6),
+        'repulsion_strength': [100, 500, 1000, 2000, 3000, 4000, 5000],
+        'relaxation_time': [0.1, 0.5, 1.0, 1.5, 2.0, 3, 4, 5],
+        'door_width': [1.0, 1.5, 2.0, 2.5, 3.0, 4, 5, 6, 10, 12]
     }
-    # parameter_ranges = {
-    #     'num_people':[20],
-    #     'desired_speed':[1.5],
-    #     'repulsion_strength':[2000],
-    #     'relaxation_time':[1],
-    #     'door_width':[2]
-    # }
     # Start timing the entire operation
     overall_start_time = time.time()
     # Run parameter sweeps
-    results = run_parameter_sweep(parameter_ranges, repetitions=5)
+    results = run_parameter_sweep(parameter_ranges, repetitions=10)
     # Print the end time
     overall_end_time = time.time()
     print(f"Total execution time: {overall_end_time - overall_start_time:.2f} seconds")
