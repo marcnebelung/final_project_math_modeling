@@ -435,16 +435,23 @@ def plot_parameter_results(results):
 if __name__ == "__main__":
     # Define parameter ranges to test
     parameter_ranges = {
-        'num_people': range(20,160,20),
-        'desired_speed': range(1,6),
-        'repulsion_strength': [100, 500, 1000, 2000, 3000, 4000, 5000],
-        'relaxation_time': [0.1, 0.5, 1.0, 1.5, 2.0, 3, 4, 5],
-        'door_width': [1.0, 1.5, 2.0, 2.5, 3.0, 4, 5, 6, 10, 12]
+        'num_people': range(5,200,2),
+        # 'desired_speed': range(1,6),
+        # 'repulsion_strength': [100, 500, 1000, 2000, 3000, 4000, 5000],
+        # 'relaxation_time': [0.1, 0.5, 1.0, 1.5, 2.0, 3, 4, 5],
+        # 'door_width': [1.0, 1.5, 2.0, 2.5, 3.0, 4, 5, 6, 10, 12]
     }
+    # parameter_ranges = {
+    #     'num_people': range(20,160,20),
+    #     'desired_speed': range(1,6),
+    #     'repulsion_strength': [100, 500, 1000, 2000, 3000, 4000, 5000],
+    #     'relaxation_time': [0.1, 0.5, 1.0, 1.5, 2.0, 3, 4, 5],
+    #     'door_width': [1.0, 1.5, 2.0, 2.5, 3.0, 4, 5, 6, 10, 12]
+    # }
     # Start timing the entire operation
     overall_start_time = time.time()
     # Run parameter sweeps
-    results = run_parameter_sweep(parameter_ranges, repetitions=10)
+    results = run_parameter_sweep(parameter_ranges, repetitions=5)
     # Print the end time
     overall_end_time = time.time()
     print(f"Total execution time: {overall_end_time - overall_start_time:.2f} seconds")
