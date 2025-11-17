@@ -177,3 +177,7 @@ cython_debug/
 results*/
 .DS_Store
 .qodo
+
+# Allow documentation images
+!docs/images/
+!docs/images/*.png
